@@ -2,18 +2,16 @@
 echo "Cloning dependencies"
 rm -rf AnyKernel
 git clone --depth=1 https://github.com/kdrag0n/proton-clang clang
-git clone --depth=1 https://github.com/sarthakroy2002/prebuilts_gcc_linux-x86_aarch64_aarch64-linaro-7 los-4.9-64
-git clone --depth=1 https://github.com/sarthakroy2002/linaro_arm-linux-gnueabihf-7.5 los-4.9-32
 echo "Done"
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 TANGGAL=$(date +"%F-%S")
 START=$(date +"%s")
 KERNEL_DIR=$(pwd)
-PATH="${PWD}/clang/bin:${PATH}:${PWD}/los-4.9-32/bin:${PATH}:${PWD}/los-4.9-64/bin:${PATH}"
+PATH="${PWD}/clang/bin:${PATH}:${PWD}/clang/bin:${PATH}:${PWD}/clang/bin:${PATH}"
 export KBUILD_COMPILER_STRING="$(${KERNEL_DIR}/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')"
 export ARCH=arm64
-export KBUILD_BUILD_HOST=neolit
-export KBUILD_BUILD_USER="sarthakroy2002"
+export KBUILD_BUILD_HOST=ThunderStorm
+export KBUILD_BUILD_USER="AnupamRoy"
 source ~/.bashrc && source ~/.profile
 ccache -M 100G
 export LC_ALL=C && export USE_CCACHE=1
@@ -29,7 +27,7 @@ function sendinfo() {
         -d chat_id="$chat_id" \
         -d "disable_web_page_preview=true" \
         -d "parse_mode=html" \
-        -d text="<b>• Test Kernel •</b>%0ABuild started on <code>Server</code>%0AFor device <b>Realme C3/Narzo 10A</b> (RMX2020)%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>${KBUILD_COMPILER_STRING}</code>%0AStarted on <code>$(date)</code>%0A<b>Build Status:</b>#Beta"
+        -d text="<b>• Test Kernel •</b>%0ABuild started on <code>Server</code>%0AFor device <b>RM6785 Devices</b> (RM6785)%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>${KBUILD_COMPILER_STRING}</code>%0AStarted on <code>$(date)</code>%0A<b>Build Status:</b>#Beta"
 }
 # Push kernel to channel
 function push() {
@@ -39,7 +37,7 @@ function push() {
         -F chat_id="$chat_id" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>Realme C3/Narzo 10A (RMX2020)</b>%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master) | <b>$(${GCC}gcc --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
+        -F caption="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>RM6785 (RM6785)</b>%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code>(master) | <b>$(${GCC}gcc --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')</b>"
 }
 # Fin Error
 function finerr() {
@@ -55,33 +53,29 @@ function finerr() {
 function compile() {
 
 [ -d "out" ] && rm -rf out || mkdir -p out
-make O=out ARCH=arm64 RMX2020_defconfig
+make O=out ARCH=arm64 RM6785_defconfig
 make -j$(nproc --all) O=out \
                       ARCH=arm64 \
                       CC="clang" \
                       CLANG_TRIPLE=aarch64-linux-gnu- \
-                      CROSS_COMPILE="${PWD}/los-4.9-64/bin/aarch64-linux-gnu-" \
-                      CROSS_COMPILE_ARM32="${PWD}/los-4.9-32/bin/arm-linux-gnueabihf-" \
+                      CROSS_COMPILE="${PWD}/clang/bin/aarch64-linux-gnu-" \
+                      CROSS_COMPILE_ARM32="${PWD}/clang/bin/arm-linux-gnueabihf-" \
                       LD=ld.lld \
-                      AS=llvm-as \
-		              AR=llvm-ar \
-			          NM=llvm-nm \
-			          OBJCOPY=llvm-objcopy \
                       CONFIG_NO_ERROR_ON_MISMATCH=y
 
     if ! [ -a "$IMAGE" ]; then
         finerr
         exit 1
     fi
-    git clone --depth=1 https://github.com/sarthakroy2002/AnyKernel3.git AnyKernel
+    git clone --depth=1 https://github.com/anupamroy777/AnyKernel33.git AnyKernel
     cp out/arch/arm64/boot/Image.gz-dtb AnyKernel
 }
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 NEOLIT-Test-OSS-KERNEL-RMX2020-${TANGGAL}.zip *
+    zip -r9 ThunderStorm-Test-KERNEL-RM6785-${TANGGAL}.zip *
     curl -sL https://git.io/file-transfer | sh
-    ./transfer wet Test-OSS-KERNEL-RMX2020-NEOLIT.zip
+    ./transfer wet Test-KERNEL-RM6785-ThunderStorm.zip
     cd ..
 }
 sendinfo
