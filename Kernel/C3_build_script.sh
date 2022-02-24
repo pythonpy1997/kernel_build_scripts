@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 echo "Cloning dependencies"
 rm -rf AnyKernel
-git clone --depth=1 https://github.com/mvaisakh/gcc-arm64.git gcc64 --single-branch
-git clone --depth=1 https://github.com/mvaisakh/gcc-arm.git gcc32 --single-branch
+git clone --depth=1 https://github.com/kdrag0n/proton-clang clang
 echo "Done"
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 TANGGAL=$(date +"%F-%S")
 START=$(date +"%s")
 KERNEL_DIR=$(pwd)
-PATH="${PWD}/usr/bin:${PATH}:${PWD}/gcc64/bin:${PATH}:${PWD}/gcc32/bin:${PATH}"
+PATH="${PWD}/clang/bin:${PATH}:${PWD}/clang/bin:${PATH}:${PWD}/clang/bin:${PATH}"
 export KBUILD_COMPILER_STRING="$(${KERNEL_DIR}/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')"
 export ARCH=arm64
 export KBUILD_BUILD_HOST=ThunderStorm
@@ -57,10 +56,11 @@ function compile() {
 make O=out ARCH=arm64 RM6785_defconfig
 make -j$(nproc --all) O=out \
                       ARCH=arm64 \
-                      CC="gcc" \
-                      CROSS_COMPILE="${PWD}/gcc64/bin/aarch64-elf-" \
-		      CROSS_COMPILE_ARM32="${PWD}/gcc32/bin/arm-eabi-" \
-		      STRIP="${PWD}/gcc64/bin/aarch64-elf-strip" \
+                      CC="clang" \
+                      CLANG_TRIPLE=aarch64-linux-gnu- \
+                      CROSS_COMPILE="${PWD}/clang/bin/aarch64-linux-gnu-" \
+                      CROSS_COMPILE_ARM32="${PWD}/clang/bin/arm-linux-gnueabihf-" \
+                      LD=ld.lld \
                       CONFIG_NO_ERROR_ON_MISMATCH=y
 
     if ! [ -a "$IMAGE" ]; then
