@@ -53,7 +53,7 @@ function finerr() {
 function compile() {
 
 [ -d "out" ] && rm -rf out || mkdir -p out
-make O=out ARCH=arm64 RM6785_defconfig
+make O=out ARCH=arm64 RMX2151_defconfig
 make -j$(nproc --all) O=out \
                       ARCH=arm64 \
                       CC="clang" \
