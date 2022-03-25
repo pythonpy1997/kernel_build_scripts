@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo "Cloning dependencies"
 rm -rf AnyKernel
-git clone --depth=1 https://github.com/kdrag0n/proton-clang clang
+git clone --depth=1 https://github.com/vijaymalav564/vortex-clang.git clang
 echo "Done"
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 TANGGAL=$(date +"%F-%S")
@@ -53,10 +53,15 @@ function finerr() {
 function compile() {
 
 [ -d "out" ] && rm -rf out || mkdir -p out
-make O=out ARCH=arm64 RMX2151_defconfig
+make O=out ARCH=arm64 RM6785_defconfig
 make -j$(nproc --all) O=out \
                       ARCH=arm64 \
                       CC="clang" \
+		      LD=ld.lld \
+		      AR=llvm-ar \
+		      NM=llvm-nm \
+		      OBJCOPY=llvm-objcopy \
+		      OBJDUMP=llvm-objdump \
                       CLANG_TRIPLE=aarch64-linux-gnu- \
                       CROSS_COMPILE="${PWD}/clang/bin/aarch64-linux-gnu-" \
                       CROSS_COMPILE_ARM32="${PWD}/clang/bin/arm-linux-gnueabihf-" \
