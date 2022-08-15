@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo "Cloning dependencies"
 rm -rf AnyKernel
-git clone --depth=1 https://github.com/vijaymalav564/vortex-clang.git clang
+git clone --depth=1 https://gitlab.com/Panchajanya1999/azure-clang.git clang
 echo "Done"
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 TANGGAL=$(date +"%F-%S")
@@ -10,8 +10,8 @@ KERNEL_DIR=$(pwd)
 PATH="${PWD}/clang/bin:${PATH}:${PWD}/clang/bin:${PATH}:${PWD}/clang/bin:${PATH}"
 export KBUILD_COMPILER_STRING="$(${KERNEL_DIR}/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g')"
 export ARCH=arm64
-export KBUILD_BUILD_HOST=ThunderStorm
-export KBUILD_BUILD_USER="AnupamRoy"
+export KBUILD_BUILD_HOST=Anupam_Roy
+export KBUILD_BUILD_USER="Gorilla669"
 source ~/.bashrc && source ~/.profile
 ccache -M 100G
 export LC_ALL=C && export USE_CCACHE=1
@@ -64,8 +64,7 @@ make -j$(nproc --all) O=out \
 		      OBJDUMP=llvm-objdump \
                       CLANG_TRIPLE=aarch64-linux-gnu- \
                       CROSS_COMPILE="${PWD}/clang/bin/aarch64-linux-gnu-" \
-                      CROSS_COMPILE_ARM32="${PWD}/clang/bin/arm-linux-gnueabihf-" \
-                      LD=ld.lld \
+                      CROSS_COMPILE_ARM32="${PWD}/clang/bin/arm-linux-gnueabi-" \
                       CONFIG_NO_ERROR_ON_MISMATCH=y
 
     if ! [ -a "$IMAGE" ]; then
