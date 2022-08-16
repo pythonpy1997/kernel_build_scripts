@@ -34,7 +34,7 @@ CODENAME="RM6785"
 export CODENAME
 DEFCONFIG="RM6785_defconfig"
 export DEFCONFIG
-COMMIT_HASH=$(git rev-parse --short HEAD)
+COMMIT_HASH=$(git rev-parse --abbrev-ref HEAD)
 export COMMIT_HASH
 PROCS=$(nproc --all)
 export PROCS
