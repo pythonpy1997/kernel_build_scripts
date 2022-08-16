@@ -116,7 +116,7 @@ make O=out ARCH="${ARCH}" "${DEFCONFIG}"
 			OBJDUMP=llvm-objdump \
 			STRIP=llvm-strip
                    	CONFIG_NO_ERROR_ON_MISMATCH=y
-fi
+
 
     if ! [ -a "$IMAGE" ]; then
         finderr
