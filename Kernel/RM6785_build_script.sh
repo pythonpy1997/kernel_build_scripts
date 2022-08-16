@@ -103,7 +103,7 @@ compile() {
     
 make O=out ARCH="${ARCH}" "${DEFCONFIG}"
 
-if [ "${BRANCH}" = "R" ]; then
+
 	make -j"${PROCS}" O=out \
                       	ARCH=$ARCH \
                       	CC="clang" \
