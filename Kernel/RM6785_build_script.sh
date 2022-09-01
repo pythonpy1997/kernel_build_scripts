@@ -8,8 +8,8 @@ deps() {
     echo "Cloning dependencies"
         
     if [ ! -d "clang" ];then
-	    git clone --depth=1 https://gitlab.com/ElectroPerf/atom-x-clang.git clang
-	    KBUILD_COMPILER_STRING="AtomX Clang 16"
+	    git clone --depth=1 https://gitlab.com/dakkshesh07/neutron-clang.git clang
+	    KBUILD_COMPILER_STRING="Neutron Clang 16"
 	    fi
     sudo apt install -y ccache
     echo "Done"
