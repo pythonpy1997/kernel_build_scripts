@@ -5,7 +5,7 @@ deps() {
     echo "Cloning dependencies"
         
     if [ ! -d "clang" ];then
-	    git clone --depth=1 https://gitlab.com/Panchajanya1999/azure-clang.git clang
+	    git clone --depth=1 https://gitlab.com/dakkshesh07/neutron-clang.git clang
 	    KBUILD_COMPILER_STRING="Azure Clang"
 	    fi
     sudo apt install -y ccache
