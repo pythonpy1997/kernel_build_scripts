@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# clone repo
+git clone --depth=1 https://github.com/anupamroy777/android_kernel_realme_RM6785.git -b full-lto
+cd android_kernel_realme_RM6785
 # Dependencies
 deps() {
     echo "Cloning dependencies"
