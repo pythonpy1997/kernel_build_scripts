@@ -6,7 +6,7 @@ deps() {
         
     if [ ! -d "clang" ];then
 	    git clone --depth=1 https://gitlab.com/ElectroPerf/atom-x-clang.git clang
-	    KBUILD_COMPILER_STRING="Azure Clang"
+	    KBUILD_COMPILER_STRING="AtomX Clang 16"
 	    fi
     sudo apt install -y ccache
     echo "Done"
