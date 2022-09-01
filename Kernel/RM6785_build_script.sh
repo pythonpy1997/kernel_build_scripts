@@ -73,7 +73,7 @@ sticker() {
 sendinfo() {
     tg "
 • THUNDERSTORM CI Build •
-*Building on*: \`Github actions\`
+*Building on*: \`Circle CI\`
 *Date*: \`${DATE}\`
 *Device*: \`${DEVICE} (${CODENAME})\`
 *Branch*: \`$(git rev-parse --abbrev-ref HEAD)\`
