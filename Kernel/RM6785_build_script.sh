@@ -86,12 +86,8 @@ push() {
 }
 # Find Error
 finderr() {
-    curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" \
-        -d chat_id="$chat_id" \
-        -d "disable_web_page_preview=true" \
-        -d "parse_mode=markdown" \
-	-d sticker="CAACAgIAAxkBAAED3JViAplqY4fom_JEexpe31DcwVZ4ogAC1BAAAiHvsEs7bOVKQsl_OiME" \
-        -d text="Build throw an error(s)"
+		LOG=$(echo *.log)
+        tgs "${LOG}" "Build throw an error(s)"
     exit 1
 }
 # Compile plox
@@ -115,7 +111,7 @@ make O=out ARCH="${ARCH}" "${DEFCONFIG}"
 		      	OBJCOPY=llvm-objcopy \
 			OBJDUMP=llvm-objdump \
 			STRIP=llvm-strip
-                   	CONFIG_NO_ERROR_ON_MISMATCH=y
+                   	CONFIG_NO_ERROR_ON_MISMATCH=y 2>&1 | tee error.log 
 
 
     if ! [ -a "$IMAGE" ]; then
