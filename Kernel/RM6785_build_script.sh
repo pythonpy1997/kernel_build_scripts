@@ -11,7 +11,6 @@ deps() {
 	    git clone --depth=1 https://gitlab.com/dakkshesh07/neutron-clang.git clang
 	    KBUILD_COMPILER_STRING="Neutron Clang 16"
 	    fi
-		sudo pacman -Sy ccache
     echo "Done"
 }
 
