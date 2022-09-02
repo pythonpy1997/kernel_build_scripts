@@ -11,7 +11,7 @@ deps() {
 	    git clone --depth=1 https://gitlab.com/dakkshesh07/neutron-clang.git clang
 	    KBUILD_COMPILER_STRING="Neutron Clang 16"
 	    fi
-    sudo apt install -y ccache
+		sudo pacman -Sy ccache
     echo "Done"
 }
 
@@ -37,19 +37,13 @@ CODENAME="RM6785"
 export CODENAME
 DEFCONFIG="RM6785_defconfig"
 export DEFCONFIG
-COMMIT_HASH=$(git rev-parse --abbrev-ref HEAD)
+COMMIT_HASH=$(git rev-parse --short HEAD)
 export COMMIT_HASH
 PROCS=$(nproc --all)
 export PROCS
 STATUS=BETA
 export STATUS
 source "${HOME}"/.bashrc && source "${HOME}"/.profile
-if [ $CACHE = 1 ];then
-    ccache -M 100G
-    export USE_CCACHE=1
-fi
-LC_ALL=C
-export LC_ALL
 
 tg() {
     curl -sX POST https://api.telegram.org/bot"${token}"/sendMessage -d chat_id="${chat_id}" -d parse_mode=Markdown -d disable_web_page_preview=true -d text="$1" &>/dev/null
