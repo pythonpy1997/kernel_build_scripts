@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # clone repo
-git clone --depth=1 https://github.com/AbzRaider/azrael_kernel_RM6785.git -b full-lto
+git clone --depth=1 https://github.com/AbzRaider/android-kernel_Azrael-RM6785.git -b full-lto
 cd azrael_kernel_RM6785
 # Dependencies
 deps() {
@@ -28,7 +28,7 @@ KBUILD_BUILD_HOST=Anupam_Roy
 export KBUILD_BUILD_HOST
 KBUILD_BUILD_USER="AbzRaider"
 export KBUILD_BUILD_USER
-REPO_URL="https://github.com/AbzRaider/azrael_kernel_RM6785.git"
+REPO_URL="https://github.com/AbzRaider/android-kernel_Azrael-RM6785.git"
 export REPO_URL
 DEVICE="RM6785 Devices"
 export DEVICE
@@ -121,9 +121,9 @@ make O=out ARCH="${ARCH}" "${DEFCONFIG}"
 # Zipping
 zipping() {
     cd AnyKernel || exit 1
-    zip -r9 ThunderStorm-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip ./*
+    zip -r9 Azrael-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip ./*
     curl -sL https://git.io/file-transfer | sh
-    ./transfer wet ThunderStorm-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip
+    ./transfer wet Azrael-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip
     cd ..
 }
 
