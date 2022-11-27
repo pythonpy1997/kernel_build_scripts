@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # clone repo
-git clone --depth=1 https://github.com/AbzRaider/android-kernel_Azrael-RM6785.git -b full-lto
+git clone --depth=1 https://github.com/AbzRaider/android-kernel_Azrael-RM6785.git -b az-full-lto
 cd azrael_kernel_RM6785
 # Dependencies
 deps() {
