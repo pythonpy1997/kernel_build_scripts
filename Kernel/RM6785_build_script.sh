@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
 # clone repo
-git clone --depth=1 https://github.com/AbzRaider/android-kernel_Azrael-RM6785.git -b az-full-lto
-cd azrael_kernel_RM6785
+git clone --depth=1 https://github.com/AbzRaider/android_kernel_realme_RMX2001.git -b Q
+cd android_kernel_realme_RMX2001
 # Dependencies
 deps() {
     echo "Cloning dependencies"
         
     if [ ! -d "clang" ];then
-	    git clone --depth=1 https://gitlab.com/dakkshesh07/neutron-clang.git clang
-	    KBUILD_COMPILER_STRING="Neutron Clang 16"
+	    git clone --depth=1 https://github.com/kdrag0n/proton-clang.git clang
+	    KBUILD_COMPILER_STRING="Proton Clang 13"
 	    fi
     echo "Done"
 }
