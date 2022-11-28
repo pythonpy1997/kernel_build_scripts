@@ -34,7 +34,7 @@ DEVICE="RM6785 Devices"
 export DEVICE
 CODENAME="RM6785"
 export CODENAME
-DEFCONFIG="RM6785_defconfig"
+DEFCONFIG="RMX2001_defconfig"
 export DEFCONFIG
 COMMIT_HASH=$(git rev-parse --short HEAD)
 export COMMIT_HASH
@@ -107,6 +107,7 @@ make O=out ARCH="${ARCH}" "${DEFCONFIG}"
 		      	OBJCOPY=llvm-objcopy \
 			OBJDUMP=llvm-objdump \
 			STRIP=llvm-strip
+			CLANG_TRIPLE=aarch64-linux-gnu- \
                    	CONFIG_NO_ERROR_ON_MISMATCH=y 2>&1 | tee error.log 
 
 
