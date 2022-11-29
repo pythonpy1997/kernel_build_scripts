@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # clone repo
-git clone --depth=1 https://github.com/AbzRaider/android_kernel_realme_RMX2001.git -b Q
+git clone --depth=1 https://github.com/pythonpy1997/android_kernel_realme_RMX2001.git -b Q
 cd android_kernel_realme_RMX2001
 # Dependencies
 deps() {
@@ -28,7 +28,7 @@ KBUILD_BUILD_HOST=AbzRaider
 export KBUILD_BUILD_HOST
 KBUILD_BUILD_USER="AbzRaider"
 export KBUILD_BUILD_USER
-REPO_URL="https://github.com/AbzRaider/android_kernel_realme_RMX2001.git"
+REPO_URL="https://github.com/pythonpy1997/android_kernel_realme_RMX2001.git"
 export REPO_URL
 DEVICE="Realme 6/6i/6s"
 export DEVICE
@@ -116,15 +116,15 @@ make O=out ARCH="${ARCH}" "${DEFCONFIG}"
         exit 1
     fi
     
-    git clone --depth=1 https://github.com/anupamroy777/AnyKernel33.git AnyKernel
+    git clone --depth=1 https://github.com/pythonpy1997/AnyKernel33.git AnyKernel
     cp out/arch/arm64/boot/Image.gz-dtb AnyKernel
 }
 # Zipping
 zipping() {
     cd AnyKernel || exit 1
-    zip -r9 Azrael-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip ./*
+    zip -r9 DragonFly-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip ./*
     curl -sL https://git.io/file-transfer | sh
-    ./transfer wet Azrael-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip
+    ./transfer wet DragonFly-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip
     cd ..
 }
 
