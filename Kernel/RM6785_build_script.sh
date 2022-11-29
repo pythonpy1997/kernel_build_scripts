@@ -28,11 +28,11 @@ KBUILD_BUILD_HOST=AbzRaider
 export KBUILD_BUILD_HOST
 KBUILD_BUILD_USER="AbzRaider"
 export KBUILD_BUILD_USER
-REPO_URL="https://github.com/AbzRaider/android-kernel_Azrael-RM6785.git"
+REPO_URL="https://github.com/AbzRaider/android_kernel_realme_RMX2001.git"
 export REPO_URL
-DEVICE="RM6785 Devices"
+DEVICE="Realme 6/6i/6s"
 export DEVICE
-CODENAME="RM6785"
+CODENAME="NEMO"
 export CODENAME
 DEFCONFIG="RMX2001_defconfig"
 export DEFCONFIG
