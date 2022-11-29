@@ -24,9 +24,9 @@ PATH="${PWD}/clang/bin:${PATH}"
 export KBUILD_COMPILER_STRING
 ARCH=arm64
 export ARCH
-KBUILD_BUILD_HOST=AbzRaider
+KBUILD_BUILD_HOST=pythonpy
 export KBUILD_BUILD_HOST
-KBUILD_BUILD_USER="AbzRaider"
+KBUILD_BUILD_USER="pythonpy"
 export KBUILD_BUILD_USER
 REPO_URL="https://github.com/pythonpy1997/android_kernel_realme_RMX2001.git"
 export REPO_URL
