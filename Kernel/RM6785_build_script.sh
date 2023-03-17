@@ -2,7 +2,7 @@
 
 # clone repo
 git clone --depth=1 https://github.com/pythonpy1997/kernel_realme_wasabi.git -b Q
-cd android_kernel_realme_wasabi
+cd kernel_realme_wasabi
 # Dependencies
 deps() {
     echo "Cloning dependencies"
