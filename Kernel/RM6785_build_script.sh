@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # clone repo
-git clone --depth=1 https://github.com/pythonpy1997/android_kernel_realme_RMX2001.git -b Q
-cd android_kernel_realme_RMX2001
+git clone --depth=1 https://github.com/pythonpy1997/kernel_realme_wasabi.git -b Q
+cd android_kernel_realme_wasabi
 # Dependencies
 deps() {
     echo "Cloning dependencies"
@@ -28,7 +28,7 @@ KBUILD_BUILD_HOST=pythonpy
 export KBUILD_BUILD_HOST
 KBUILD_BUILD_USER="pythonpy"
 export KBUILD_BUILD_USER
-REPO_URL="https://github.com/pythonpy1997/android_kernel_realme_RMX2001.git"
+REPO_URL="https://github.com/pythonpy1997/kernel_realme_wasabi.git"
 export REPO_URL
 DEVICE="Realme 6/6i/6s"
 export DEVICE
@@ -122,9 +122,9 @@ make O=out ARCH="${ARCH}" "${DEFCONFIG}"
 # Zipping
 zipping() {
     cd AnyKernel || exit 1
-    zip -r9 DragonFly-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip ./*
+    zip -r9 Ugay-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip ./*
     curl -sL https://git.io/file-transfer | sh
-    ./transfer wet DragonFly-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip
+    ./transfer wet Ugay-Test-OSS-"${BRANCH}"-KERNEL-"${CODENAME}"-"${DATE}".zip
     cd ..
 }
 
